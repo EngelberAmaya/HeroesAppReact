@@ -1,11 +1,9 @@
 import React from 'react'
 
-const Marvel = () => {
+export const MarvelScreen = () => {
   return (
     <div>
        <h1>MarvelScreen</h1>      
     </div>
   )
 }
-
-export default Marvel
