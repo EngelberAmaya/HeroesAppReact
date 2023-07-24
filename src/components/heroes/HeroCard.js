@@ -29,7 +29,7 @@ export const HeroCard = ({
                             <small className='text-muted'>{first_appearance}</small>
                         </p>
 
-                        <Link to={`./hero/${id}`} className='btn btn-primary btn-block'>Mas...</Link>
+                        <Link to={`/hero/${id}`} className='btn btn-primary btn-block'>Mas...</Link>
 
                     </div>
                 </div>
