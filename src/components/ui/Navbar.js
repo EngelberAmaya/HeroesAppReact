@@ -34,6 +34,14 @@ export const Navbar = () => {
                     >
                         DC
                     </NavLink>
+
+                    <NavLink 
+                        className="nav-item nav-link" 
+                        to="/search"
+                    >
+                        Search
+                    </NavLink>
+
                 </div>
             </div>
 
