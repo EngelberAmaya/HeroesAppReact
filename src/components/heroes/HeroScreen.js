@@ -1,16 +1,17 @@
 import React from 'react';
-import { Navigate, useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { getHeroById } from '../../selectors/getHeroById';
 
 export const HeroScreen = () => {
 
     const {heroeId} = useParams();
+    const navigate = useNavigate()
     
     const hero = getHeroById(heroeId);
 
     if (!hero) {
-      return <Navigate to='/' />
-  }
+        return <Navigate to='/' />
+    }
 
     const {
       superhero,
@@ -20,9 +21,31 @@ export const HeroScreen = () => {
       characters
     } = hero;
 
+    const handleReturn = () => {
+       navigate(-1);
+    }
+
     return (
-      <div>
-        <h1>HeroScreen</h1>
-      </div>
+        <div className='row mt-5'>
+
+            <div className='col-md-4'>
+                <img src={`../assets/heroes/${heroeId}.jpg`} alt={superhero} className='img-thumbnail' />
+            </div>
+
+            <div className='col-md-8'>
+                <h3>{superhero}</h3>
+                <ul className='list-group list-group-flush'>
+                    <li className='list-group-item'><b>Alter ego: </b>{alter_ego}</li>
+                    <li className='list-group-item'><b>Publisher: </b>{publisher}</li>
+                    <li className='list-group-item'><b>First appearance: </b>{first_appearance}</li>
+                </ul>
+
+                <h5>Characters</h5>
+                <p>{characters}</p>
+
+                <button onClick={handleReturn} className='btn btn-info mb-3'>Return</button>
+
+            </div>
+        </div>
     )
 }
