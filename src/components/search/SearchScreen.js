@@ -1,24 +1,29 @@
-import React from 'react'
+import React from 'react';
+import queryString from 'query-string';
 import { heroes } from '../../data/heroes';
 import { HeroCard } from '../heroes/HeroCard';
 import useForm from '../../hooks/useForm';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export const SearchScreen = () => {
 
-    const [{searchText}, handleInputChange] = useForm({
-        description: ''
-    })
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const { q = '' } = queryString.parse(location.search);
+
+    const [ formValues, handleInputChange ] = useForm({
+        searchText: q,
+    });
+
+    const { searchText } = formValues;
 
     const heroesFiltered = heroes;
 
     const handleSearch = (e) => {
         e.preventDefault();
 
-        if (searchText.trim().length < 1) {
-            return;
-        }
-
-        console.log(searchText)
+        navigate(`?q=${ searchText }`)
 
     }
 
@@ -35,7 +40,7 @@ export const SearchScreen = () => {
 
                     <form onSubmit={handleSearch}>
                         <input name='searchText' className='form-control' type='text' placeholder='Find your hero'
-                               onChange={handleInputChange} value={searchText} />
+                               onChange={handleInputChange} value={searchText} autoComplete='off' />
                         <button type='submit' className='btn btn-primary btn-block m-1'>Search</button>
                     </form>
 
