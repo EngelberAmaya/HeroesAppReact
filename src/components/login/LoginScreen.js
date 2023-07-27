@@ -9,7 +9,7 @@ const LoginScreen = () => {
 
   const { dispatch } = useContext(AuthContext);
 
-  const data = {
+  const action = {
     type: types.login,
     payload: {
         name: 'Engelber Amaya'
@@ -17,11 +17,15 @@ const LoginScreen = () => {
   }
 
   const handleLogin = () => {
-      navigate('/marvel', {
+
+      dispatch(action);
+
+      const lastPath = localStorage.getItem('lastPath') || '/marvel';
+
+
+      navigate( lastPath, {
           replace: true
       });
-
-      dispatch(data);
   }
 
   return (
