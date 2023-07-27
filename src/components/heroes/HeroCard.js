@@ -17,7 +17,7 @@ export const HeroCard = ({
                 </div>
 
                 <div className='col-md-8'>
-                    <div className='card-body ml-5'>
+                    <div className='card-body'>
                         <h5 className='card-title'>{superhero}</h5>
                         <p className='card-text'>{alter_ego}</p>
 
