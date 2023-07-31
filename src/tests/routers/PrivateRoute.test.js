@@ -10,6 +10,8 @@ jest.mock('react-router-dom', () => ({
 
 describe('Pruebas en el <PrivateRoute />', () => {
 
+    Storage.prototype.setItem = jest.fn();
+
     test('Debe mostrar el componente si está autenticado y guardar localStorage', () => {
 
         const contextValue = {
@@ -30,6 +32,7 @@ describe('Pruebas en el <PrivateRoute />', () => {
         );
 
         expect(wrapper.text().trim()).toBe('Private Component');
+        expect(localStorage.setItem).toHaveBeenCalledWith('lastPath', '/');
       
     });    
   
